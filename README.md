@@ -19,6 +19,9 @@ TrackUser is a mobile application build using react-native technology to track u
 > To install these dependecies just run following command
 >```yarn ```
 
+**use following url to create a mongodb database**
+```https://cloud.mongodb.com/```
+
 #### To create a dummy url install ngrok globally in your system
 
 >```npm install -g ngrok```
@@ -48,4 +51,5 @@ TrackUser is a mobile application build using react-native technology to track u
 **install using following command**
  >```yarn```
 
- 
+ ## To run expo app use following command
+> ```expo start```
