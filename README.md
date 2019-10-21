@@ -4,10 +4,7 @@ TrackUser is a mobile application build using react-native technology to track u
 
 ## This project contains two folder
 * Server
+  > Server folder is used to save data on a mongoseDB with the help of ngrok to generate dummy URL for API request
 * tracks
-
-
-> Server folder is used to save data on a mongoseDB with the help of ngrok to generate dummy URL for API request
-> tracks -> it is a mobile application that is build using expo-cli
-
-# Installation in managed Expo projects
+  > tracks -> it is a mobile application that is build using expo-cli
+### Installation is managed Expo projects
