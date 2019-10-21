@@ -17,9 +17,35 @@ TrackUser is a mobile application build using react-native technology to track u
 * "nodemon": "^1.19.2" -> automatic refresh of changes
 
 > To install these dependecies just run following command
-```yarn ```
+>```yarn ```
 
 #### To create a dummy url install ngrok globally in your system
-```npm install -g ngrok```
+
+>```npm install -g ngrok```
+
 **and to run server just go to server directory and hit command**
-```ngrok http 3000```
+
+>```ngrok http 3000```
+
+### Installation of Tracks mobile app
+>###Dependencies
+*  "axios": "^0.19.0",
+*    "expo": "^35.0.0",
+*   "react": "16.8.3",
+*    "react-dom": "16.8.3",
+*    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+*    "react-native-elements": "^1.2.6",
+*    "react-native-gesture-handler": "~1.3.0",
+*    "react-native-paper": "^2.16.0",
+*    "react-native-reanimated": "~1.2.0",
+*    "react-native-screens": "^2.0.0-alpha.4",
+*    "react-native-web": "^0.11.7",
+*   "react-navigation": "^4.0.10",
+*    "react-navigation-material-bottom-tabs": "^2.1.2",
+*    "react-navigation-stack": "^1.10.2",
+*    "react-navigation-tabs": "^2.5.6"
+
+**install using following command**
+ >```yarn```
+
+ 
