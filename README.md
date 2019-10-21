@@ -30,6 +30,10 @@ TrackUser is a mobile application build using react-native technology to track u
 
 >```ngrok http 3000```
 
+**Connect to mongoseDB instance run following command inside track-server directory in separate terminal window**
+
+ ```npm run dev```
+
 ### Installation of Tracks mobile app
 >###Dependencies
 *  "axios": "^0.19.0",
