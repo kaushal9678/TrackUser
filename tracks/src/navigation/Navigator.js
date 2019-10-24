@@ -10,8 +10,9 @@ import SigninScreen from '../screens/SigninScreen';
 import TrackDetailScreen from '../screens/TrackDetailScreen';
 import TrackListScreen from '../screens/TrackListScreen';
 import TrackCreateScreen from '../screens/TrackCreateScreen'
-
+import ResolveAuthScreen from '../screens/ResolveAuthScreen'
 const switchNavigator =  createSwitchNavigator({
+  ResolveAuth:ResolveAuthScreen,
   loginFlow:createStackNavigator({
     SignUp:SignupScreen,
     SignIn:SigninScreen,
@@ -25,7 +26,7 @@ const switchNavigator =  createSwitchNavigator({
     Account:AccountScreen,
 
   },
-  
+
   )
 })
 

@@ -6,13 +6,15 @@ import {navigate} from '../navigation/navigationRef'
 
 const authReducer = (state,action)=>{
     switch (action.type) {
-      
+
         case 'signin':
        return {token:action.payload, errorMessage: ''};
        case 'add_error':
             return {...state,errorMessage:action.payload,};
         case  "clear_error_message":
              return {...state,errorMessage:''}
+        case "signout":
+              return {token: null,errorMessage:''};
         default:
           return state;
             break;
@@ -57,14 +59,23 @@ const signin = dispatch=> async({email,password})=>{
         // if we signup, modify our state, and say that we are authenticated
 
         //if signing up fails, we probably need to reflect an error message somewhere
-    
+
 }
 
 
-const signout = (dispatch)=>{
-    return ()=>{
-        // signout
-        
-         }
+const signout = dispatch =>async()=>{
+  await AsyncStorage.removeItem('token');
+  dispatch({type:signout});
+  navigate('loginFlow');
 }
-export const {Provider,Context} = createDataContext(authReducer,{signin,signout,signup,clearErrorMessage}, {token:null,errorMessage:""})
+const tryLocalSignIn = dispatch => async()=>{
+  const token =  await AsyncStorage.getItem('token');
+  if(token){
+    dispatch({type:'signin',payload:token});
+    navigate('TrackList');
+  }else{
+    navigate('SignUp');
+  }
+}
+
+export const {Provider,Context} = createDataContext(authReducer,{signin,signout,signup,clearErrorMessage,tryLocalSignIn}, {token:null,errorMessage:""})

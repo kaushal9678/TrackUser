@@ -4,6 +4,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Navigator from './src/navigation/Navigator';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import {setNavigator} from './src/navigation/navigationRef'
+import {Provider as LocationProvider} from './src/context/LocationContext'
 const theme = {
   ...DefaultTheme,
   roundness: 2,
@@ -16,9 +17,11 @@ const theme = {
 const App =()=>{
   return (
   <PaperProvider theme={theme}>
+    <LocationProvider>
       <AuthProvider>
           <Navigator ref={(navigator)=>{setNavigator(navigator)}}/>
      </AuthProvider>
+     </LocationProvider>
   </PaperProvider>
   )
 }

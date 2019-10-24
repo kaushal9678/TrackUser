@@ -8,13 +8,14 @@ import NavLink from '../components/NavLink'
 const SignupScreen =({navigation})=>{
 
     const {state,signup,clearErrorMessage} = useContext(AuthContext);
-   
+
+
    // console.log("state==",state);
-    return( 
+    return(
         <View style={styles.container}>
         <NavigationEvents onWillBlur={clearErrorMessage}/>
-         <AuthForm 
-         headerText="Sign Up for Tracker" 
+         <AuthForm
+         headerText="Sign Up for Tracker"
          submitButtonText="Sign Up"
          errorMessage={state.errorMessage}
         //1st way
@@ -24,8 +25,8 @@ const SignupScreen =({navigation})=>{
             onSubmit={signup}
          />
          <NavLink routeName="SignIn" text="Already have an account? Sign in instead!"/>
-        
-    
+
+
     </View>
     )
 }
