@@ -1,56 +1,43 @@
 //import '../_mockLocation';
-import React, {useEffect,useState,useContext } from 'react';
+import React, {useEffect,useState,useContext,useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet,SafeAreaView} from 'react-native';
+import {NavigationEvents, withNavigationFocus} from 'react-navigation'
 import Map from '../components/Map';
 import {Text} from 'react-native-elements'
-import {requestPermissionAsync, watchPositionAsync, Accuracy} from 'expo-location'
-import * as Permissions from 'expo-permissions';
-import * as Location from 'expo-location';
+
+import useLocation from '../hooks/useLocation'
+import TrackForm from '../components/TrackForm'
+
+//import * as Location from 'expo-location';
 import {Context as LocationContext} from '../context/LocationContext'
 
-const TrackCreateScreen =()=>{
+const TrackCreateScreen =({isFocused})=>{
 
-  const {addLocation} = useContext(LocationContext);
-  const [err,setErr] = useState(null);
- const [location,setLocation] = useState(null);
+  const {state:{recording},addLocation} = useContext(LocationContext);
+ const callBack = useCallback(location=>{
+         addLocation(location,recording);
+    },[recording]);
+ 
+ /*  const [err,location] = useLocation((location)=>{
+      addLocation(location);
+  }) */
 
-  _getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      setErr('Location access Permission is not granted. Please enable it.');
-    }else{
-      setErr(null);
-    }
+const [err,location] = useLocation(isFocused || recording,callBack);
 
-    let location = await Location.getCurrentPositionAsync({});
-     setLocation(location );
-  };
-  const startWatching = async () =>{
-    try {
-      await _getLocationAsync();
-      await watchPositionAsync({
-        accuracy:Accuracy.BestForNavigation,
-        timeInterval:1000,
-        distanceInterval:10,
-      },(location)=>{
-         addLocation(location);
-      })
-    } catch (error) {
-      setErr(error);
-    }
-  } 
-  useEffect(() => {
-    startWatching();
-  }, [])
-    return <SafeAreaView forceInset={{top:'always'}}>
+  
+  return <SafeAreaView forceInset={{top:'always'}}>
       <Text h4>Create a track</Text>
       <Map/>
+        {/*used isFocused from with withNavigationFocus*/}
+    {/*   <NavigationEvents onWillBlur={()=>console.log("Leaving")}/> */} 
+  
       {err ? <Text>Please enable location services</Text>: null}
+      <TrackForm/>
     </SafeAreaView>
 }
 
 const style = StyleSheet.create({
 
 });
-export default TrackCreateScreen;
+export default withNavigationFocus(TrackCreateScreen);
