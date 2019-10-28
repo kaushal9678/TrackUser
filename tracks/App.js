@@ -5,6 +5,7 @@ import Navigator from './src/navigation/Navigator';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import {setNavigator} from './src/navigation/navigationRef'
 import {Provider as LocationProvider} from './src/context/LocationContext'
+import {Provider as TrackProvider} from './src/context/TrackContext'
 const theme = {
   ...DefaultTheme,
   roundness: 2,
@@ -17,11 +18,13 @@ const theme = {
 const App =()=>{
   return (
   <PaperProvider theme={theme}>
+  <TrackProvider>
     <LocationProvider>
       <AuthProvider>
           <Navigator ref={(navigator)=>{setNavigator(navigator)}}/>
      </AuthProvider>
      </LocationProvider>
+     </TrackProvider>
   </PaperProvider>
   )
 }

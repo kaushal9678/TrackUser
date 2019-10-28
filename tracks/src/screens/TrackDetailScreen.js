@@ -1,12 +1,41 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet,Text} from 'react-native';
+import {Context as TrackContext} from '../context/TrackContext'
+import MapView,{Polyline,Circle} from 'react-native-maps';
+const TrackDetailScreen =({navigation})=>{
 
-const TrackDetailScreen =()=>{
-    return <Text style={{fontSize: 40,}}>TrackDetailScreen</Text>;
+    const {state} = useContext(TrackContext);
+    const _id = navigation.getParam('_id');
+
+    const track = state.find(t=>t._id === _id);
+    const initialCoords  = track.locations[0].coords;
+    return <>
+    <Text style={{fontSize: 40,}}>{track.name}</Text>
+    <MapView 
+    initialRegion={{
+        longitudeDelta:0.01,
+        latitudeDelta:0.01,
+        ...initialCoords
+
+    }}
+    style={styles.map}
+    >
+    <Polyline coordinates={track.locations.map(loc=>loc.coords)}/>
+    </MapView>
+    </>
 }
 
-const style = StyleSheet.create({
-
+const styles = StyleSheet.create({
+map:{
+    height:300,
+}
 });
+
+TrackDetailScreen.navigationOptions=({navigation})=>{
+   /*   const track = state.find(t=>t._id === _id);
+    return {
+        title:track.name
+    } */
+}
 export default TrackDetailScreen;

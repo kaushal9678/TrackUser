@@ -44,7 +44,7 @@ export default (shouldTrack,callback)=>{
          }else{
            if(subscriber){
              subscriber.remove();
-           }
+            }
             subscriber = null;
     }
     return ()=>{
